@@ -9,20 +9,12 @@ import {getRepository, Repository} from "typeorm";
 // Padrão Singleton
 
 class CategoriesRepository implements ICategoriesRepository {
-    private repository: Repository<Category>
+    private repository: Repository<Category>;
 
-    private static INSTANCE: CategoriesRepository; 
-
-    private constructor() {
+    constructor() {
         this.repository = getRepository(Category)
     }
 
-    public static getInstance(): CategoriesRepository {
-        if (!CategoriesRepository.INSTANCE) {
-            CategoriesRepository.INSTANCE = new CategoriesRepository();
-        }
-        return CategoriesRepository.INSTANCE;
-    }
 
     async create({ description, name }: ICreateCategoryDTO): Promise<void> {
         const category = this.repository.create({
@@ -34,7 +26,7 @@ class CategoriesRepository implements ICategoriesRepository {
     }
 
     async list(): Promise<Category[]> {
-        const categories = this.repository.find();
+        const categories = await this.repository.find();
         return categories
     }
 
