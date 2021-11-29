@@ -2,7 +2,9 @@ import express, {RequestHandler} from "express";
 import swaggerUi from "swagger-ui-express";
 
 import swaggerFile from "./swagger.json";
-import "./database"
+import "./database";
+
+import "./shared/container";
 
 import { router } from "./routes";
 

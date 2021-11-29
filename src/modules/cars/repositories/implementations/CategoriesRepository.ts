@@ -5,9 +5,6 @@ import {
 } from "../ICategoriesRepository";
 
 import {getRepository, Repository} from "typeorm";
-
-// Padrão Singleton
-
 class CategoriesRepository implements ICategoriesRepository {
     private repository: Repository<Category>;
 
